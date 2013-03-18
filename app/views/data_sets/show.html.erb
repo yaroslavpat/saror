@@ -1,0 +1,22 @@
+←  <%= link_to 'Back', data_sets_path %>
+
+<p id="notice"><%= notice %></p>
+<h1> DataSet #<%= @data_set.id %> </h1>
+<p>
+  <b>Preview:</b> <br/>
+  <%= @data_set.data.to_s %>
+</p>
+<% analyzers = [MxAnalyzer, DxAnalyzer] # здесь потом будет что-то в стиле Analyzers.all, которое будет собираться из базы
+   a = analyzers.map { |analyzer| analyzer.new(@data_set.data) }
+   a.each(&:process!)
+   a.each do |analyzer|
+        if analyzer.result[:type] == 'Array'    %>
+        <%= analyzer.result[:annotation] %>
+        <%= analyzer.result[:result].to_s %><br/><%
+        end
+   end
+%>
+<p>
+<%= link_to 'Edit', edit_data_set_path(@data_set) %> |
+<%= link_to 'Destroy', @data_set, :confirm => 'Are you sure?',
+            :method => :delete %>

@@ -1,0 +1,21 @@
+<%= form_for(@data_set) do |f| %>
+    <% if @data_set.errors.any? %>
+        <div id="errorExplanation">
+          <h2><%= pluralize(@data_set.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @data_set.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :data %><br />
+      <%= f.text_area :raw_data, :value => @data_set.data.map {|arr| arr.join(', ')}.join("\n") %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

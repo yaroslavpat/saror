@@ -1,0 +1,21 @@
+<h1>DataSets</h1>
+<table>
+<tr align=left>
+  <th>Updated at</th>
+  <th>Length</th>
+  <th>Preview</th>
+</tr>
+<%  @data_sets.each do |data_set| %>
+
+    <tr>
+      <td><%= data_set.updated_at.to_date %></td>
+      <td><%= data_set.data.first.length %></td>
+      <td><%= link_to data_set.data.to_s[1..20] + '…', data_set %></td>
+      <td><%= link_to 'Edit', edit_data_set_path(data_set) %></td>
+      <td><%= link_to 'Destroy', data_set, :confirm => 'Are you sure?',
+                      :method => :delete %></td>
+    </tr>
+<% end %>
+</table>
+
+<%= link_to 'New', new_data_set_path %>
