@@ -14,6 +14,9 @@ class HistogramAnalyzer < Analyzer
       min_level = row.min
       values_area = row.max - min_level
       histogram_step = values_area.to_f / segments_amount
+      if row.max == min_level
+        histogram_step = 1
+      end
 
       histogram = Array.new(segments_amount, 0)
       row.each do |value|
