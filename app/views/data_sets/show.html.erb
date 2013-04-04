@@ -6,7 +6,7 @@
   <b>Preview:</b> <br/>
   <%= @data_set.data.to_s %>
 </p>
-<% analyzers = [MxAnalyzer, DxAnalyzer, HistogramAnalyzer] # здесь потом будет что-то в стиле Analyzers.all, которое будет собираться из базы
+<% analyzers = [MxAnalyzer, DxAnalyzer, HistogramAnalyzer, NormalityAnalyzer] # здесь потом будет что-то в стиле Analyzers.all, которое будет собираться из базы
    a = analyzers.map { |analyzer| analyzer.new(@data_set.data) }
    a.each(&:process!)
    a.each do |analyzer|
