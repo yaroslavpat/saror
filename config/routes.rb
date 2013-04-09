@@ -1,5 +1,7 @@
 StatisticsAnalyzerRoR::Application.routes.draw do
 
+  get "upload/get"
+
   root :to => "DataSets#index"
   resources :data_sets
 

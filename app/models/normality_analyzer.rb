@@ -1,6 +1,7 @@
 class NormalityAnalyzer < Analyzer
   def process_line(line)
-    sample_cdf = line.sort.map { |x| cdf(line, x)}
+    # sample_cdf = line.sort.map { |x| cdf(line, x)}
+    sample_cdf = line.sort.map { |x| (line.sort.index(x) + 1.0) / line.size}
     mx = line.inject(0, :+).to_f/line.size
     dx = line.inject(0){ |memo, obj| memo += (obj-mx)**2}.to_f / (line.size-1)
     ideal_cdf = line.sort.map { |x| 0.5+0.5*(Math.erf((x.to_f - mx)/Math.sqrt(2*dx))) }
