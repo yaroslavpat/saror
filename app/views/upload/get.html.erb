@@ -1,6 +1,0 @@
-<% form_for(:file,
-            url: {action: 'save'},
-            html: {multipart: true}) do |form| %>
-    Upload your file: <%= form.file_field("uploaded_file") %><br/>
-    <%= submit_tag("Upload file") %>
-<% end %>
