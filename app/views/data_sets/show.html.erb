@@ -7,6 +7,7 @@
   <%= @data_set.data.to_s %>
 </p>
 <% analyzers = [MxAnalyzer, DxAnalyzer, HistogramAnalyzer, NormalityAnalyzer] # здесь потом будет что-то в стиле Analyzers.all, которое будет собираться из базы
+   #AnalyzerFile.find(2).file.file.read
    a = analyzers.map { |analyzer| analyzer.new(@data_set.data) }
    a.each(&:process!)
    a.each do |analyzer|

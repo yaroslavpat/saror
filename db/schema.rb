@@ -11,17 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409202115) do
+ActiveRecord::Schema.define(:version => 20130410142055) do
+
+  create_table "analyzer_files", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "file"
+  end
 
   create_table "data_sets", :force => true do |t|
     t.text     "data"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "files", :force => true do |t|
-    t.string "name"
-    t.binary "data", :limit => 1048576
   end
 
   create_table "users", :force => true do |t|
