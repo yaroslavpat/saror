@@ -1,0 +1,23 @@
+<h1>Listing analyzer_files</h1>
+
+<table>
+  <tr>
+    <th>File Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @analyzer_files.each do |analyzer_file| %>
+  <tr>
+    <td><%= analyzer_file.file %></td>
+    <td><%= link_to 'Show', analyzer_file %></td>
+    <td><%= link_to 'Edit', edit_analyzer_file_path(analyzer_file) %></td>
+    <td><%= link_to 'Destroy', analyzer_file, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Analyzer file', new_analyzer_file_path %>
