@@ -1,4 +1,6 @@
 class AnalyzerFilesController < ApplicationController
+  before_filter :check_admin
+
   # GET /analyzer_files
   # GET /analyzer_files.json
   def index
@@ -79,5 +81,10 @@ class AnalyzerFilesController < ApplicationController
       format.html { redirect_to analyzer_files_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def check_admin
+    render :file => "#{Rails.root}/public/403.html" unless current_user.admin?
   end
 end

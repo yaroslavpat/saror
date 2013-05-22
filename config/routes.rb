@@ -2,6 +2,8 @@ StatisticsAnalyzerRoR::Application.routes.draw do
 
 
 
+  devise_for :users
+
   root :to => "DataSets#index"
   resources :data_sets
   resources :analyzer_files
