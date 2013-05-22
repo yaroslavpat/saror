@@ -6,23 +6,18 @@
   <b>Preview:</b> <br/>
   <%= @data_set.data.to_s %>
 </p>
-<% # analyzers = [MxAnalyzer, DxAnalyzer, HistogramAnalyzer, NormalityAnalyzer] # здесь потом будет что-то в стиле Analyzers.all, которое будет собираться из базы
-   #AnalyzerFile.find(2).file.file.read вот так читать из файла, хотя второй .file мне кажется лишним.
-
-   analyzers = AnalyzerFile.all.map { |analyzer_file| eval(analyzer_file.file.read).to_s }
-   analyzers.each { |analyzer| Rails.logger.debug "Analyzer Str: #{analyzer.to_s}" }
-
-   #a = analyzers.map { |analyzer| analyzer.new(@data_set.data) }
-   #a.each(&:process!)
-   #a.each do |analyzer|
-     #if analyzer.result[:type] == 'Array'
+<% AnalyzerFile.all.each { |analyzer_file| eval(analyzer_file.file.read) }
+   analyzers = Analyzer.descendants
+   a = analyzers.map { |analyzer| analyzer.new(@data_set.data) }
+   a.each(&:process!)
+   a.each do |analyzer|
+     if analyzer.result[:type] == 'Array'
 %>
-        <%= #analyzer.result[:annotation]
+        <%= analyzer.result[:annotation]
         %>
-        <%= #analyzer.result[:result].to_s
-        %><br/><%
-   #end
-   #end
+        <%= analyzer.result[:result].to_s %><br/><%
+   end
+   end
 %>
 <p>
 <%= link_to 'Edit', edit_data_set_path(@data_set) %> |
