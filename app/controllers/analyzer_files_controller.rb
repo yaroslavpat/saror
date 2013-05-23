@@ -1,4 +1,6 @@
 class AnalyzerFilesController < ApplicationController
+
+  before_filter :authenticate_user!
   before_filter :check_admin
 
   # GET /analyzer_files
